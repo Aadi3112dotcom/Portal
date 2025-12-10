@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Page</title>
+    <link rel="stylesheet" href="member.css">
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <h2>MENU</h2>
+
+    <button class="dropdown-btn">Dashboards</button>
+    <div class="dropdown-container">
+        <a href="#">Profile</a>
+        <a href="#">Comments</a>
+        <a href="#">Submissions</a>
+    </div>
+
+    <button class="dropdown-btn">Tasks</button>
+    <div class="dropdown-container">
+        <a href="#">Task Sheet</a>
+        <a href="#">Review Your Submissions</a>
+    </div>
+
+    <button class="dropdown-btn">Team</button>
+    <div class="dropdown-container">
+        <a href="#">Team List</a>
+        <a href="#">Domains Wise List</a>
+        <a href="#">Leaderboard</a>
+    </div>
+</div>
+
+<!-- Main content -->
+<div class="main-content">
+
+<header>
+    <h1>General Page </h1>
+  </header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#" onclick="logout()" class="hover:underline">Logout</a>
+</nav>
+
+<div class="container">
+
+  <div class="card primary">
+    <h3>Task Sheet</h3>
+    <a href="#">View Details ></a>
+  </div>
+
+  <div class="card danger">
+    <h3>Team Leaderboard</h3>
+    <a href="#">View Details ></a>
+  </div>
+
+</div>
+<section id="about" class="about">
+<div class="container">
+    <h2 id="about">About</h2>
+    <p>
+        This General Dashboard is designed to help manage tasks, teams, and reviews in a simple 
+        and efficient way. Members can track tasks, while also reviewing 
+        submissions and managing team information. The goal is to provide a clean and 
+        user-friendly interface for smooth workflow management.
+    </p><br>
+</div>
+</section>
+<div class="contact">
+    <h2 id="contact">Contact</h2>
+    <p>Email: example@email.com</p>
+</div>
+
+</div> <!-- main content end -->
+
+<script src="member.js"></script>
+</body>
+</html>

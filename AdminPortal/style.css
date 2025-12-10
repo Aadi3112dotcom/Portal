@@ -1,0 +1,143 @@
+/* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom, #003b73 70%, #000000 30%);
+    display: flex;     /* Needed for sidebar + content layout */
+}
+
+/* Header */
+header h1 {
+    background: #000000;
+    margin: 0;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+header * {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Top Navigation */
+nav {
+    background: #222;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 15px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main Container */
+.container {
+    margin: 0;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+.contact {
+    margin: 0;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Card Components */
+.card {
+    width: 200px;
+    padding: 30px 20px;
+    border-radius: 10px;
+    color: white;
+}
+
+.card a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    margin-top: 20px;
+}
+
+/* Card colors */
+.primary { background-color: #007bff; }
+.warning { background-color: #ffc107; color: rgb(255, 255, 255); }
+.success { background-color: #28a745; }
+.danger { background-color: #dc3545; }
+
+/* Footer */
+footer {
+    background: #4a4aff;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+/* ================= SIDEBAR STYLING ================= */
+
+.sidebar {
+    width: 250px;
+    background: linear-gradient(to bottom, #3739aa, #423cbd);
+    color: white;
+    padding: 20px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sidebar h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.dropdown-btn {
+    background: none;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+}
+
+.dropdown-btn:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.dropdown-container {
+    display: none;
+    padding-left: 15px;
+}
+
+.dropdown-container a {
+    color: white;
+    padding: 8px;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown-container a:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+/* Main content shifts right because of sidebar */
+.main-content {
+    margin-left: 260px;
+    padding: 20px;
+    flex: 1;
+}
