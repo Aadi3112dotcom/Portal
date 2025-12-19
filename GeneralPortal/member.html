@@ -1,88 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>General Page</title>
-    <link rel="stylesheet" href="member.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>General Portal</title>
+  <link rel="stylesheet" href="member.css" />
 </head>
 
 <body>
 
 <!-- Sidebar -->
 <div class="sidebar">
-    <h2>MENU</h2>
+  <h2>MENU</h2>
 
-    <button class="dropdown-btn">Dashboards</button>
-    <div class="dropdown-container">
-        <a href="#">Profile</a>
-        <a href="#">Comments</a>
-        <a href="#">Submissions</a>
-    </div>
+  <button class="dropdown-btn">Dashboards</button>
+  <div class="dropdown-container">
+    <a href="#">Profile</a>
+    <a href="#">Comments</a>
+    <a href="#">Submissions</a>
+  </div>
 
-    <button class="dropdown-btn">Tasks</button>
-    <div class="dropdown-container">
-        <a href="#">Task Sheet</a>
-        <a href="#">Review Your Submissions</a>
-    </div>
+  <button class="dropdown-btn">Tasks</button>
+  <div class="dropdown-container">
+    <a href="#">Task Sheet</a>
+    <a href="#">Review Your Submissions</a>
+  </div>
 
-    <button class="dropdown-btn">Team</button>
-    <div class="dropdown-container">
-        <a href="#">Team List</a>
-        <a href="#">Domains Wise List</a>
-        <a href="#">Leaderboard</a>
-    </div>
+  <button class="dropdown-btn">Team</button>
+  <div class="dropdown-container">
+    <a href="Code_Generated_Image.png">Team List</a>
+    <a href="../domain.html">Domains Wise List</a>
+    <a href="#">Leaderboard</a>
+  </div>
 </div>
 
 <!-- Main content -->
 <div class="main-content">
 
-<header>
-    <h1>General Page </h1>
+  <header>
+    <h1>General Portal</h1>
   </header>
 
-<nav>
+  <nav>
     <a href="#">Home</a>
+    <a href="#">Profile</a>
     <a href="#about">About</a>
-    <a href="#" onclick="logout()" class="hover:underline">Logout</a>
-</nav>
+    <a href="#" onclick="logout()">Logout</a>
+  </nav>
 
-<div class="container">
+  <!-- DASHBOARD CARDS -->
+  <div class="container">
 
-  <div class="card primary">
-    <h3>Task Sheet</h3>
-    <p>Assigned Tasks ></p>
+    <div class="card">
+      <h3>Task Sheet</h3>
+      <p>Assigned Tasks</p>
+      <ul id="taskList">
+        <li>No tasks assigned yet</li>
+      </ul>
+    </div>
 
-    <!-- TASK LIST GOES HERE -->
-    <ul id="taskList"></ul>
+    <div class="card">
+      <h3>Team Leaderboard</h3>
+      <a href="#">View Details →</a>
+    </div>
+
   </div>
 
-  <div class="card danger">
-    <h3>Team Leaderboard</h3>
-    <a href="#">View Details ></a>
-  </div>
-
-</div>
-
-
-</div>
-<section id="about" class="about">
-<div class="container">
-    <h2 id="about">About</h2>
+  <!-- ABOUT -->
+  <div id="about" class="about">
+    <h2>About</h2>
     <p>
-        This General Dashboard is designed to help manage tasks, teams, and reviews in a simple 
-        and efficient way. Members can track tasks, while also reviewing 
-        submissions and managing team information. The goal is to provide a clean and 
-        user-friendly interface for smooth workflow management.
-    </p><br>
-</div>
-</section>
-<div class="contact">
-    <h2 id="contact">Contact</h2>
-    <p>Email: example@email.com</p>
-</div>
+      This General Dashboard is designed to help manage tasks, teams, and reviews in a simple 
+      and efficient way. Members can track tasks, while also reviewing submissions and managing 
+      team information.
+    </p>
+  </div>
 
-</div> <!-- main content end -->
+  <!-- CONTACT -->
+  <div class="contact">
+    <h2>Contact</h2>
+    <p>
+      Instagram:
+      <a href="https://www.instagram.com/srm.insider" target="_blank">SRM Insider</a>
+    </p>
+  </div>
+
+</div>
 
 <script src="member.js"></script>
 </body>

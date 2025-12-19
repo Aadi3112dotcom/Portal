@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Member Portal</title>
+    <link rel="stylesheet" href="domain.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Select Domain</h2>
+
+        <select id="domain">
+            <option value="">-- Choose Domain --</option>
+            <option value="web">Web Development</option>
+            <option value="creatives">Creatives</option>
+            <option value="ai">AI/ML</option>
+            <option value="corporate">Corporate</option>
+        </select>
+
+        <button onclick="showMembers()">Show Members</button>
+
+        <ul id="memberList"></ul>
+    </div>
+
+    <script src="domain.js"></script>
+</body>
+</html>
