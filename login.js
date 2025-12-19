@@ -1,19 +1,40 @@
-document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault(); // prevents form refresh
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("loginForm");
 
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
-    let error = document.getElementById("error");
+  if (!form) {
+    console.error("loginForm not found");
+    return;
+  }
 
-    // Example fixed login credentials
-    if (username === "admin" && password === "12345") {
-        window.location.href = "AdminPortal/admin.html"; // redirect page
-    } else {
-        error.textContent = "Invalid username or password!";
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const error = document.getElementById("error");
+
+    try {
+      const res = await fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
+
+      const data = await res.json();
+
+      if (!data.success) {
+        error.textContent = "Invalid username or password";
+        return;
+      }
+
+      if (data.role === "admin") {
+        window.location.href = "AdminPortal/admin.html";
+      } else {
+        window.location.href = "GeneralPortal/member.html";
+      }
+
+    } catch (err) {
+      error.textContent = "Backend not running";
     }
-    if (username === "member" && password === "12345") {
-        window.location.href = "GeneralPortal/member.html"; // redirect page
-    } else {
-        error.textContent = "Invalid username or password!";
-    }
+  });
 });

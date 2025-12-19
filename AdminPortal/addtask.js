@@ -1,63 +1,66 @@
-// script.js - simple, no storage
-document.addEventListener('DOMContentLoaded', () => {
-  const input = document.getElementById('taskInput');
-  const addBtn = document.getElementById('addBtn');
-  const list = document.getElementById('taskList');
-  const countSpan = document.getElementById('taskCount');
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("todoInput");
+  const addBtn = document.getElementById("addTodo");
+  const list = document.getElementById("taskList");
+  const countEl = document.getElementById("taskCount");
 
-  // Add when Add button clicked
-  addBtn.addEventListener('click', addTaskFromInput);
+  async function loadTasks() {
+    try {
+      const res = await fetch("http://localhost:5000/tasks");
+      const tasks = await res.json();
 
-  // Add when Enter pressed inside input
-  input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') addTaskFromInput();
-  });
+      list.innerHTML = "";
+      countEl.textContent = tasks.length;
 
-  // Event delegation for checkbox toggle and delete button
-  list.addEventListener('click', (e) => {
-    const li = e.target.closest('li');
-    if (!li) return;
+      if (tasks.length === 0) {
+        list.innerHTML = "<li>No tasks yet</li>";
+        return;
+      }
 
-    // If clicked delete button
-    if (e.target.classList.contains('delete-btn')) {
-      li.remove();
-      updateCount();
-      return;
+      tasks.forEach((task, index) => {
+        const li = document.createElement("li");
+        li.className = "task-item";
+
+        const span = document.createElement("span");
+        span.className = "text";
+        span.textContent = task.text;
+
+        // toggle done
+        span.addEventListener("click", () => {
+          span.classList.toggle("done");
+        });
+
+        const delBtn = document.createElement("button");
+        delBtn.className = "delete-btn";
+        delBtn.textContent = "✕";
+
+        delBtn.addEventListener("click", () => {
+          li.remove();
+          countEl.textContent = list.children.length;
+        });
+
+        li.appendChild(span);
+        li.appendChild(delBtn);
+        list.appendChild(li);
+      });
+    } catch (err) {
+      console.error("Error loading tasks", err);
     }
+  }
 
-    // If clicked the checkbox
-    if (e.target.matches('input[type="checkbox"]')) {
-      const textEl = li.querySelector('.text');
-      if (e.target.checked) textEl.classList.add('done');
-      else textEl.classList.remove('done');
-      return;
-    }
-  });
-
-  // Create and add a task element from the input value
-  function addTaskFromInput() {
+  addBtn.addEventListener("click", async () => {
     const text = input.value.trim();
-    if (!text) return; // ignore empty
+    if (!text) return;
 
-    const li = document.createElement('li');
-    li.className = 'task-item';
+    await fetch("http://localhost:5000/tasks", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text })
+    });
 
-    li.innerHTML = `
-      <input type="checkbox" aria-label="Mark task done">
-      <span class="text"></span>
-      <button class="delete-btn" title="Delete task">✕</button>
-    `;
+    input.value = "";
+    loadTasks();
+  });
 
-    li.querySelector('.text').textContent = text;
-    list.appendChild(li);
-
-    input.value = '';
-    input.focus();
-    updateCount();
-  }
-
-  // Update task count display
-  function updateCount() {
-    countSpan.textContent = list.children.length;
-  }
+  loadTasks();
 });
