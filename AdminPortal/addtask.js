@@ -4,9 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const list = document.getElementById("taskList");
   const countEl = document.getElementById("taskCount");
 
+  const API = "http://localhost:5000/tasks";
+
   async function loadTasks() {
     try {
-      const res = await fetch("http://localhost:5000/tasks");
+      const res = await fetch(API);
       const tasks = await res.json();
 
       list.innerHTML = "";
@@ -17,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      tasks.forEach((task, index) => {
+      tasks.forEach(task => {
         const li = document.createElement("li");
         li.className = "task-item";
 
@@ -25,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         span.className = "text";
         span.textContent = task.text;
 
-        // toggle done
+        // visual toggle only
         span.addEventListener("click", () => {
           span.classList.toggle("done");
         });
@@ -34,9 +36,12 @@ document.addEventListener("DOMContentLoaded", () => {
         delBtn.className = "delete-btn";
         delBtn.textContent = "✕";
 
-        delBtn.addEventListener("click", () => {
-          li.remove();
-          countEl.textContent = list.children.length;
+        // ✅ REAL DELETE (backend)
+        delBtn.addEventListener("click", async () => {
+          await fetch(`${API}/${task.id}`, {
+            method: "DELETE"
+          });
+          loadTasks(); // re-fetch updated list
         });
 
         li.appendChild(span);
@@ -52,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const text = input.value.trim();
     if (!text) return;
 
-    await fetch("http://localhost:5000/tasks", {
+    await fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text })
