@@ -10,18 +10,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     const res = await fetch("http://localhost:5000/tasks");
     const tasks = await res.json();
 
-    console.log("Tasks received:", tasks);
-
     list.innerHTML = "";
 
-    if (tasks.length === 0) {
+    // ✅ Member sees tasks assigned by Admin or VP
+    const visibleTasks = tasks.filter(
+      task =>
+        task.assignedTo === "member" &&
+        (task.assignedBy === "admin" || task.assignedBy === "vp")
+    );
+
+    if (visibleTasks.length === 0) {
       list.innerHTML = "<li>No tasks assigned yet</li>";
       return;
     }
 
-    tasks.forEach(task => {
+    visibleTasks.forEach(task => {
       const li = document.createElement("li");
-      li.textContent = task.text;
+      li.textContent = `${task.text} (Assigned by ${task.assignedBy.toUpperCase()})`;
       list.appendChild(li);
     });
 

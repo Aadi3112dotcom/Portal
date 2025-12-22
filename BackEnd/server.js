@@ -8,7 +8,9 @@ app.use(express.json());
 // USERS
 const users = [
   { username: "admin", password: "12345", role: "admin" },
+  { username: "vp", password: "12345" , role: "vp" },
   { username: "member", password: "12345", role: "member" }
+
 ];
 
 // TASK STORAGE
@@ -29,20 +31,37 @@ app.post("/login", (req, res) => {
   }
 });
 
+
+
+
 // ADD TASK
 app.post("/tasks", (req, res) => {
-  const { text } = req.body;
-  if (!text) return res.status(400).json({ message: "Task text required" });
+  const { text, assignedBy, assignedTo } = req.body;
 
-  const newTask = { id: Date.now(), text, done: false };
+  if (!text || !assignedBy || !assignedTo) {
+    return res.status(400).json({ message: "Missing fields" });
+  }
+
+  const newTask = {
+    id: Date.now(),
+    text,
+    assignedBy,
+    assignedTo,
+    done: false
+  };
+
   tasks.push(newTask);
   res.json(newTask);
 });
 
+
 // GET TASKS
-app.get("/tasks", (req, res) => {
-  res.json(tasks);
+app.get("/tasks/:role", (req, res) => {
+  const role = req.params.role;
+  const filtered = tasks.filter(t => t.assignedTo === role);
+  res.json(filtered);
 });
+
 
 // DELETE TASK
 app.delete("/tasks/:id", (req, res) => {

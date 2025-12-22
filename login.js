@@ -29,9 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (data.role === "admin") {
         window.location.href = "AdminPortal/admin.html";
-      } else {
+      } 
+      else if (data.role === "vp") {
+         window.location.href = "VPPortal/vp.html";}
+        else {
         window.location.href = "GeneralPortal/member.html";
       }
+
+     
+
+
 
     } catch (err) {
       error.textContent = "Backend not running";

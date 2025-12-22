@@ -25,23 +25,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const span = document.createElement("span");
         span.className = "text";
-        span.textContent = task.text;
-
-        // visual toggle only
-        span.addEventListener("click", () => {
-          span.classList.toggle("done");
-        });
+        span.textContent = `${task.text} (by ${task.assignedBy})`;
 
         const delBtn = document.createElement("button");
         delBtn.className = "delete-btn";
         delBtn.textContent = "✕";
 
-        // ✅ REAL DELETE (backend)
         delBtn.addEventListener("click", async () => {
-          await fetch(`${API}/${task.id}`, {
-            method: "DELETE"
-          });
-          loadTasks(); // re-fetch updated list
+          await fetch(`${API}/${task.id}`, { method: "DELETE" });
+          loadTasks();
         });
 
         li.appendChild(span);
@@ -53,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // ✅ ADD TASK — ONLY ONCE
   addBtn.addEventListener("click", async () => {
     const text = input.value.trim();
     if (!text) return;
@@ -60,7 +53,10 @@ document.addEventListener("DOMContentLoaded", () => {
     await fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text })
+      body: JSON.stringify({
+        text,
+        assignedBy: "admin"
+      })
     });
 
     input.value = "";

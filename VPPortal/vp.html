@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vice President Portal</title>
+  <link rel="stylesheet" href="vp.css"/>
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <h2>VP MENU</h2>
+
+  <button class="dropdown-btn">Dashboard</button>
+  <div class="dropdown-container">
+    <a href="#">Profile</a>
+  </div>
+
+  <button class="dropdown-btn">Tasks</button>
+  <div class="dropdown-container">
+    <a href="../AdminPortal/addtask.html">Assign Task</a>
+    <a href="#">View Tasks</a>
+  </div>
+
+  <button class="dropdown-btn">Team</button>
+  <div class="dropdown-container">
+    <a href="#">Leaderboard</a>
+    <a href="../domain.html">Domains</a>
+  </div>
+</div>
+
+<!-- Main content -->
+<div class="main-content">
+
+  <header>
+    <h1>Vice President Dashboard</h1>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Profile</a>
+    <a href="#" onclick="logout()">Logout</a>
+  </nav>
+
+  <!-- DASHBOARD CARDS -->
+  <div class="container">
+
+    <div class="card">
+      <h3>Assigned Tasks</h3>
+      <ul id="taskList">
+        <li>Loading tasks...</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Team Leaderboard</h3>
+      <a href="#">View Details →</a>
+    </div>
+
+  </div>
+
+  <div class="about">
+    <h2>About VP Role</h2>
+    <p>
+      The Vice President can assign tasks, monitor progress,
+      and manage domain-level performance.
+    </p>
+  </div>
+
+</div>
+
+<script src="vp.js"></script>
+</body>
+</html>
