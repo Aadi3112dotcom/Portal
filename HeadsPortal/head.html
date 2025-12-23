@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Heads'
+ Dashboard</title>
+  <link rel="stylesheet" href="head.css" />
+</head>
+
+<body>
+
+<div class="sidebar">
+  <h2>HEADS' MENU</h2>
+
+  <a href="#" class="menu-link active">Dashboard</a>
+  <a href="#" class="menu-link">Profile</a>
+
+  <button class="dropdown-btn">Tasks</button>
+  <div class="dropdown-container">
+    <a href="#">Assign Task</a>
+    <a href="#">View Tasks</a>
+  </div>
+
+  <button class="dropdown-btn">Team</button>
+  <div class="dropdown-container">
+    <a href="#">Leaderboard</a>
+    <a href="../domain.html">Domains</a>
+  </div>
+</div>
+
+<div class="main-content">
+
+  <div class="top-bar">
+    <h1>Heads' Dashboard</h1>
+  </div>
+  
+  <nav class="top-nav">
+    <a href="#">Home</a>
+    <a href="#">Profile</a>
+    <a href="#" onclick="logout()">Logout</a>
+  </nav>
+
+  <div class="container">
+
+    <div class="card">
+      <h3>Assigned Tasks</h3>
+      <ul id="headTaskList" class="task-list">
+        <li>No tasks assigned</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Team Leaderboard</h3>
+      <a href="#" class="details-link">View Details &rarr;</a>
+    </div>
+
+    <div class="card full-width">
+      <h3>About Head Role</h3>
+      <p>
+        The Head can assign tasks, monitor progress, and manage domain-level performance.
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="head.js"></script>
+</body>
+</html>
