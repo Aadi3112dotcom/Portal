@@ -27,18 +27,28 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      
+      localStorage.setItem("role", data.role);
+      if (data.domain) {
+  localStorage.setItem("domain", data.domain);
+}
+
+
       if (data.role === "admin") {
         window.location.href = "AdminPortal/admin.html";
       } 
       else if (data.role === "vp") {
-         window.location.href = "VPPortal/vp.html";}
-        else {
+        window.location.href = "VPPortal/vp.html";
+      } 
+      else if (data.role === "head") {
+        window.location.href = "HeadPortal/head.html";
+      } 
+      else if (data.role === "lead") {
+        window.location.href = "LeadPortal/lead.html";
+      } 
+      else {
         window.location.href = "GeneralPortal/member.html";
       }
-
-     
-
-
 
     } catch (err) {
       error.textContent = "Backend not running";

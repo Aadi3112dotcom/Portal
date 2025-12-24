@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const addBtn = document.getElementById("addTodo");
   const list = document.getElementById("taskList");
   const countEl = document.getElementById("taskCount");
+  const assignedToSelect = document.getElementById("assignedTo");
 
   const API = "http://localhost:5000/tasks";
 
@@ -25,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const span = document.createElement("span");
         span.className = "text";
-        span.textContent = `${task.text} (by ${task.assignedBy})`;
+        span.textContent = `${task.text} → ${task.assignedTo}`;
 
         const delBtn = document.createElement("button");
         delBtn.className = "delete-btn";
@@ -45,21 +46,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ✅ ADD TASK — ONLY ONCE
+  // ✅ ADD TASK (WORKING)
   addBtn.addEventListener("click", async () => {
     const text = input.value.trim();
-    if (!text) return;
+    const assignedTo = assignedToSelect.value;
 
-    await fetch(API, {
+    if (!text || !assignedTo) {
+      alert("Please enter task and select role");
+      return;
+    }
+
+    const res = await fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         text,
-        assignedBy: "admin"
+        assignedBy: "admin",
+        assignedTo
       })
     });
 
+    if (!res.ok) {
+      alert("Failed to add task");
+      return;
+    }
+
     input.value = "";
+    assignedToSelect.value = "";
     loadTasks();
   });
 

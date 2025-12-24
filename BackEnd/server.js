@@ -8,15 +8,21 @@ app.use(express.json());
 // USERS
 const users = [
   { username: "admin", password: "12345", role: "admin" },
-  { username: "vp", password: "12345" , role: "vp" },
-  { username: "member", password: "12345", role: "member" }
+  { username: "vp", password: "12345", role: "vp" },
+  { username: "member", password: "12345", role: "member" },
+  { username: "head", password: "12345", role: "head" },
 
+  { username: "web_lead", password: "12345", role: "lead", domain: "web" },
+  { username: "ai_lead", password: "12345", role: "lead", domain: "ai" },
+  { username: "creative_lead", password: "12345", role: "lead", domain: "creatives" },
+  { username: "app_lead", password: "12345", role: "lead", domain: "app" },
+  { username: "cloud_lead", password: "12345", role: "lead", domain: "cloud" }
 ];
 
 // TASK STORAGE
 let tasks = [];
 
-// LOGIN
+// LOGIN  
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
@@ -25,18 +31,20 @@ app.post("/login", (req, res) => {
   );
 
   if (user) {
-    res.json({ success: true, role: user.role });
+    res.json({
+      success: true,
+      role: user.role,
+      domain: user.domain || null
+    });
   } else {
     res.json({ success: false });
   }
 });
 
-
-
-
 // ADD TASK
 app.post("/tasks", (req, res) => {
-  const { text, assignedBy, assignedTo } = req.body;
+  console.log("Received task:", req.body);
+  const { text, assignedBy, assignedTo, domain } = req.body;
 
   if (!text || !assignedBy || !assignedTo) {
     return res.status(400).json({ message: "Missing fields" });
@@ -47,6 +55,7 @@ app.post("/tasks", (req, res) => {
     text,
     assignedBy,
     assignedTo,
+    domain: domain || "all",
     done: false
   };
 
@@ -54,14 +63,10 @@ app.post("/tasks", (req, res) => {
   res.json(newTask);
 });
 
-
-// GET TASKS
-app.get("/tasks/:role", (req, res) => {
-  const role = req.params.role;
-  const filtered = tasks.filter(t => t.assignedTo === role);
-  res.json(filtered);
+// GET  TASK
+app.get("/tasks", (req, res) => {
+  res.json(tasks);
 });
-
 
 // DELETE TASK
 app.delete("/tasks/:id", (req, res) => {
@@ -70,7 +75,8 @@ app.delete("/tasks/:id", (req, res) => {
   res.json({ message: "Task deleted" });
 });
 
-// SERVER
+
+ 
 app.listen(5000, () => {
   console.log("Server Started on http://localhost:5000");
 });
