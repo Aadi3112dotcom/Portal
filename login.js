@@ -27,13 +27,18 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      
+     
       localStorage.setItem("role", data.role);
+      localStorage.setItem("username", username);
+
+      //  Save domain if present (leads)
       if (data.domain) {
-  localStorage.setItem("domain", data.domain);
-}
+        localStorage.setItem("domain", data.domain);
+      } else {
+        localStorage.removeItem("domain");
+      }
 
-
+      
       if (data.role === "admin") {
         window.location.href = "AdminPortal/admin.html";
       } 
