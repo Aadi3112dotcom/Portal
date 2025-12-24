@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Heads - Assign Tasks</title>
+  <link rel="stylesheet" href="addtask.css">
+</head>
+
+<body>
+  <button onclick="window.location.href='head.html'" class="back-button">← Back to Dashboard</button>
+
+  <div class="app">
+    <h1>Heads Task Board</h1>
+
+    <div class="input-row">
+      <input type="text" id="todoInput" placeholder="Enter task details..." />
+      
+      <select id="assignedTo" class="role-select">
+        <option value="" disabled selected>Assign to...</option>
+        <option value="lead">Lead</option>
+        <option value="member">Member</option>
+      </select>
+
+      <button id="addTodo">Assign</button>
+    </div>
+
+    <div class="counts">
+      Tasks assigned by you: <span id="taskCount">0</span>
+    </div>
+
+    <ul class="task-list" id="taskList"></ul>
+  </div>
+
+  <script src="addtask.js"></script>
+</body>
+</html>
