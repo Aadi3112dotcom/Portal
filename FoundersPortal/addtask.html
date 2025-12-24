@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Founder - Assign Tasks</title>
+  
+  <link rel="stylesheet" href="addtask.css">
+</head>
+
+<body>
+  <button onclick="window.location.href='founder.html'" class="back-button">← Back to Portal</button>
+
+  <div class="app">
+    <h1>Founder Task Board</h1>
+
+    <div class="input-row">
+      <input type="text" id="todoInput" placeholder="Enter high-level task..." />
+      
+      <select id="assignedTo" class="role-select">
+        <option value="" disabled selected>Assign to...</option>
+        <option value="head">Head</option>
+        <option value="lead">Lead</option>
+        <option value="member">Member</option>
+      </select>
+
+      <button id="addTodo">Assign</button>
+    </div>
+
+    <div class="counts">
+      Tasks assigned by Founder: <span id="taskCount">0</span>
+    </div>
+
+    <ul class="task-list" id="taskList"></ul>
+  </div>
+
+  <script src="addtask.js"></script>
+</body>
+</html>
