@@ -12,7 +12,7 @@ const users = [
   { username: "member", password: "12345", role: "member" },
   { username: "head", password: "12345", role: "head" },
 
-  { username: "web_lead", password: "12345", role: "lead", domain: "web" },
+  { username: "web_lead", password: "1234", role: "lead", domain: "web" },
   { username: "ai_lead", password: "12345", role: "lead", domain: "ai" },
   { username: "creative_lead", password: "12345", role: "lead", domain: "creatives" },
   { username: "app_lead", password: "12345", role: "lead", domain: "app" },
@@ -74,6 +74,8 @@ app.delete("/tasks/:id", (req, res) => {
   tasks = tasks.filter(t => t.id !== id);
   res.json({ message: "Task deleted" });
 });
+
+
 
 
  
