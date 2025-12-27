@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Create Announcement</title>
+ <link rel="stylesheet" href="announcement.css" />
+</head>
+
+<body>
+  <button onclick="window.location.href='admin.html'" class="back-button">
+    ← Back to Admin
+  </button>
+
+  <div class="app">
+    <h1>Create Announcement</h1>
+
+    <input type="text" id="title" placeholder="Announcement Title" />
+
+    <textarea id="description" placeholder="Description"></textarea>
+
+    <select id="type">
+      <option value="general">General</option>
+      <option value="meet">Meeting</option>
+      <option value="task">Task</option>
+    </select>
+
+    <input type="date" id="date" />
+    <input type="time" id="time" />
+    <input type="text" id="link" placeholder="Meeting / Form Link (optional)" />
+
+    <select id="targetRole">
+      <option value="all">All</option>
+      <option value="vp">VP</option>
+      <option value="head">Heads</option>
+      <option value="lead">Leads</option>
+      <option value="member">Members</option>
+    </select>
+
+    <button id="postBtn">Post Announcement</button>
+  </div>
+
+  <script src="announcement.js"></script>
+</body>
+</html>

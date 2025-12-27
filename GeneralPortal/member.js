@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     list.innerHTML = "";
 
-    // ✅ Member sees tasks assigned by Admin or VP
+    
     const visibleTasks = tasks.filter(
       task =>
         task.assignedTo === "member" &&
@@ -34,6 +34,34 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Failed to load tasks:", err);
     list.innerHTML = "<li>Error loading tasks</li>";
   }
+
+  async function loadAnnouncements() {
+  const role = "member";
+
+  const res = await fetch("http://localhost:5000/announcements");
+  const announcements = await res.json();
+
+  const list = document.getElementById("announcementList");
+  list.innerHTML = "";
+
+  const visible = announcements.filter(a =>
+    a.targetRole === "all" || a.targetRole === role
+  );
+
+  if (visible.length === 0) {
+    list.innerHTML = "<li>No announcements</li>";
+    return;
+  }
+
+  visible.forEach(a => {
+    const li = document.createElement("li");
+    li.innerHTML = `<strong>${a.title}</strong><br>${a.description}`;
+    list.appendChild(li);
+  });
+}
+
+loadAnnouncements();
+
 });
 
 function logout() {
